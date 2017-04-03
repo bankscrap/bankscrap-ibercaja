@@ -1,8 +1,6 @@
 require 'bankscrap'
 
 require 'json'
-require 'base64'
-require 'tempfile'
 require 'digest'
 
 module Bankscrap
@@ -44,15 +42,11 @@ module Bankscrap
       def fetch_transactions_for(account, start_date: Date.today - 1.month, end_date: Date.today)
         log "fetch_transactions for #{account.id}"
 
-        # The API allows any limit to be passed, but we better keep
-        # being good API citizens and make a loop with a short limit
         params = {
           'request.cuenta' => account.id,
           'request.fechaInicio' => start_date.strftime('%Y/%m/%d'),
           'request.fechaFin' => end_date.strftime('%Y/%m/%d'),
         }
-
-
         request = get("#{PRODUCTS_ENDPOINT}/movimientos", params: params)
         json = JSON.parse(request)
         json['Movimientos'].map do |transaction|
