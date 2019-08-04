@@ -2,6 +2,8 @@
 
 Bankscrap adapter for the API behind Ibercaja's [mobile app](https://itunes.apple.com/es/app/ibercaja/id515972019?mt=8).
 
+Contact: open an issue or email us at bankscrap@protonmail.com.
+
 ## Installation
 
 Add this line to your application's Gemfile:
